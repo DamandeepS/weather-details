@@ -1,0 +1,47 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/core-ajax/core-ajax.html">
+<polymer-element name="weather-details" attributes="input city weather temp icon">
+    <template>
+        <core-ajax id="weatherapi" url="http://api.openweathermap.org/data/2.5/weather?" handelAs="json" params="{{params}}" on-core-response="{{weather}}">
+        </core-ajax>
+    </template>
+    <script>
+        Polymer({
+            params: {
+                "lat": "12",
+                "lon": "34"
+            },
+            ready: function () {
+                console.log('service ready');
+                $this = this;
+                if (typeof ($this.input) == "undefined") {
+                    alert()
+                    navigator.geolocation.getCurrentPosition(function (data) {
+                        $this.params.lat = data.coords.latitude;
+                        $this.params.lon = data.coords.longitude;
+                        console.log(data.coords);
+                        $this.$.weatherapi.go();
+                    });
+                } else {
+                    $this.params = {
+                        "q": $this.input
+                    };
+                    $this.$.weatherapi.go();
+                }
+
+            },
+            weather: function (data, resp) {
+                var weatherDetails = resp.response;
+                weatherDetails = JSON.parse(weatherDetails);
+                console.log(weatherDetails);
+                if (weatherDetails.cod != 404) {
+                    this.temp = weatherDetails.main.temp;
+                    this.city = weatherDetails.name;
+                    this.weather = weatherDetails.weather[0].main;
+                    this.icon = weatherDetails.weather[0].icon;
+                    console.log(this.temp, this.city, this.weather, this.icon);
+                }
+            }
+        });
+    </script>
+</polymer-element>
