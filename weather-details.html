@@ -1,5 +1,5 @@
-<link rel="import" href="bower_components/polymer/polymer.html">
-<link rel="import" href="bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
 <polymer-element name="weather-details" attributes="input city weather temp icon">
     <template>
         <core-ajax id="weatherapi" url="http://api.openweathermap.org/data/2.5/weather?" handelAs="json" params="{{params}}" on-core-response="{{weather}}">
