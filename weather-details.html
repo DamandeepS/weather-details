@@ -15,7 +15,6 @@
                 console.log('service ready');
                 $this = this;
                 if (typeof ($this.input) == "undefined" || $this.input=="") {
-                    alert()
                     navigator.geolocation.getCurrentPosition(function (data) {
                         $this.params.lat = data.coords.latitude;
                         $this.params.lon = data.coords.longitude;
