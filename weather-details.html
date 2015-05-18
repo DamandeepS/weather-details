@@ -40,6 +40,12 @@
                     this.weather = weatherDetails.weather[0].main;
                     this.icon = weatherDetails.weather[0].icon;
                     console.log(this.temp, this.city, this.weather, this.icon);
+                } else {
+                    
+                    this.temp = "N/A";
+                    this.city = "N/A";
+                    this.weather = "N/A";
+                    this.icon = "N/A";
                 }
             }
         });
