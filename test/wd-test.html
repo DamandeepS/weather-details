@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>seed-element</title>
+
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../weather-details.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+    <weather-details id="service-without-input"></weather-details>
+    <weather-details id="service-with-input" input="Jammu"></weather-details>
+
+  <script>
+    var myEl = document.querySelector('#service-without-input');
+    var myEl2 = document.querySelector('#service-with-input');
+    
+
+    suite('<weather-details>', function() {
+
+      test('defines the "param" property', function() {
+        assert.isDefined(myEl.params, 'Param is defined');
+      });
+
+      test('finds weather', function() {
+        assert.isDefined(myEl.weather, "gives a defined value");
+      });
+
+      test('finds temprature', function() {
+        assert.isDefined(myEl.temp, "gives a defined value");
+      });
+
+      test('finds city', function() {
+        assert.isDefined(myEl.city, "gives a defined value");
+      });
+
+      test('finds icon', function() {
+        assert.isDefined(myEl.icon, "gives a defined value");
+      });
+
+
+    });
+
+    suite('<weather-details input="Jammu">', function() {
+
+      test('defines the "param" property', function() {
+        assert.isDefined(myEl2.params, 'Param is defined');
+      });
+
+      test('finds weather', function() {
+        assert.isDefined(myEl2.weather, "gives a defined value");
+      });
+
+      test('finds temprature', function() {
+        assert.isDefined(myEl2.temp, "gives a defined value");
+      });
+
+      test('finds city', function() {
+        assert.isDefined(myEl2.city, "gives a defined value");
+      });
+
+      test('finds icon', function() {
+        assert.isDefined(myEl2.icon, "gives a defined value");
+      });
+
+
+    });
+  </script>
+
+</body>
+</html>
